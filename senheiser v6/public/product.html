@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+
+<head>
+    <script src="js/app.js">
+    </script>
+    <script>
+        
+    </script>
+</head>
+
+<body>
+    <div id="app-4">
+        <ol>
+            <li v-for="prod in products">
+                {{ prod.name }} {{prod.amount}}
+            </li>
+        </ol>
+    </div>
+
+    <script>
+        const data = {
+            products: []
+        }
+
+        let app4 = new Vue({
+            el: '#app-4',
+            data: data
+        })
+    
+        axios.get("/product")
+            .then((resp) => data.products = resp.data )
+            .catch((err) =>
+                console.error(err.response.data)
+            )
+    
+    </script>
+
+</body>
+
+</html>

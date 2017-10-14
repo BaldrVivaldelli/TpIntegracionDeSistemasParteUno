@@ -28,6 +28,7 @@ Route::get('/login',function() {
 //Ruta de prueva
 Route::get('/probandoUnRouting','ProductController@getAll');
 Route::delete('/deleteFile/{id}','FileController@destroy')->middleware('auth');
+Route::get('/download/{id}','FileController@show')->middleware('auth');
 Route::post('/uploadFile','FileController@create')->middleware('auth');
 Auth::routes();
 

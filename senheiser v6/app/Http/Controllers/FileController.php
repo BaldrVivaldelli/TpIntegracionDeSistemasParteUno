@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\File;
-
+use Response;
 use Illuminate\Support\Facades\Auth;
 //esto sirve para eliminar el file del storage
 use Illuminate\Support\Facades\Storage;
@@ -36,7 +36,7 @@ class FileController extends Controller
 		$file->name = $req->myFile->getClientOriginalName();
 		$file->size = $req->myFile->getClientSize();
 		$file->mime_type = $req->myFile->getClientMimeType();
-		$file->path = $req->file('myFile')->store('myCloud-'.$id);
+        $file->path = $req->file('myFile')->store('myCloud-'.$id);
 		$file->user()->associate(Auth::user());
 		$file->save();
 		
@@ -63,8 +63,12 @@ class FileController extends Controller
     public function show($id)
     {
         //esta funcion lo que hace es buscar el id del archivo para despues en base a donde esta hubicado en el storage bajarla
-        $file = File::where("user_id",$id)->get();
-        Response::download($file, 'filename.pdf');
+        $path = File::findOrFail($id)->path;  
+        //$type = File::findOrFail($id)->mime_type;  
+     //   Response::download($path, $type);
+        //return response()->download(storage_path("{$path}"));
+        $mimetype = Storage::mimeType($path);
+        return response(Storage::get($path), 200)->header('Content-Type', $mimetype);
     }
 
     /**
@@ -98,10 +102,9 @@ class FileController extends Controller
      */
     public function destroy($id)
     {
-        
-
+        $path = File::findOrFail($id)->path;  
         //esto me va a borrar del storage el archivo que le diga. De todas formas el find or fail me tiene que traer la dirreccion
-        Storage::delete(File::findOrFail($id));                
+        Storage::delete( $path );                
 		File::findOrFail($id)->delete();    
 		return redirect('/home');
     }

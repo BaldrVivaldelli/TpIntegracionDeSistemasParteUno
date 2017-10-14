@@ -74,8 +74,7 @@
 						</tr>
 					</thead>
 					<tbody>
-
-						@foreach ($myFiles as $file)
+					@foreach ($myFiles as $file)
 							<tr>							
 							<td>
 							<a href="#" onclick="event.preventDefault(); document.getElementById('delete-post-{{$file->id}}').submit();">
@@ -86,7 +85,7 @@
 								<input name="_method" type="hidden" value="DELETE">
 							</form>
 							</td>
-							<td>{{$file->name}} </td>
+							<td ><a href= "/download/{{$file->id}}" > {{$file->name}} </a> </td>
 							<td>{{$file->mime_type}} </td>
 							<td>{{$file->size}} </td>
 							<td>
@@ -95,7 +94,7 @@
 								<a href="">3</a>
 							</td>
 							</tr>
-						@endforeach						
+						@endforeach	
 					</tbody>
 				</table>
 			</div>

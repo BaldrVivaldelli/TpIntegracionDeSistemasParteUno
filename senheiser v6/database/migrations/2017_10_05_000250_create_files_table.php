@@ -20,7 +20,7 @@ class CreateFilesTable extends Migration
             $table->string('path');
 			$table->bigInteger('size');
 			$table->string('mime_type');
-			$table->boolean('public_share');
+			$table->boolean('public_share')->default(true);
             $table->timestamps();
 			$table->foreign('user_id')->references('id')->on('users');	
         });

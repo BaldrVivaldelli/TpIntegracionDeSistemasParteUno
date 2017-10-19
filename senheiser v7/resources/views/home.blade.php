@@ -1,23 +1,19 @@
 @extends('layouts.app')
 
 @section('content')
-<html lang="en-US">
-	<head>
-		<link rel="stylesheet" type="text/css" href="css/app.css">
-		<link rel="icon" href="img/fav.png" type="image/png" >
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-		<meta charset="UTF-8">
-		<title>Chelito DB</title>
-	</head>
 	<body>
 <!-- Encabezado de la pagina -->
 		<header> 
 			<div id="headercont">
 				<span class ="sesion"> 
-					<a href="/login">Iniciar sesion</a>
-					
-					
-					<a href="/logout">Cerrar sesion</a>
+					@if (Auth::check())
+					<a class ="userOption" href="/logout">Cerrar sesion</a>
+					@else
+
+					<a class ="userOption" href="/login">Iniciar sesion</a>
+					<a class ="userOption" href="/register">Registrar</a>
+
+					@endif
 				</span>
 				<span> 
 					<h1>Chelito database</h1>
@@ -28,8 +24,10 @@
                             {{ session('status') }}
                         </div>
                     @endif
+					@if (Auth::check())
+                    	You are logged in!
 
-                    You are logged in!
+					@endif
                 </div>
 			</div>
 		</header>
@@ -63,6 +61,8 @@
 					<input type="file" name="myFile">
 					<input type="submit" value="Submit"></input>
 				</form>
+		
+@if (Auth::check())		
 				<table id="tablaCont">
 					<thead>
 						<tr> 
@@ -70,7 +70,7 @@
 							<th>Nombre</th>
 							<th>Formato</th>
 							<th>Peso</th>
-							<th>Acciones</th>
+							<th>Editar</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -89,18 +89,38 @@
 							<td>{{$file->mime_type}} </td>
 							<td>{{$file->size}} </td>
 							<td>
-							<a href="">1</a>
-								<a href="">2</a>
-								<a href="">3</a>
+								<form action="/file/{{$file->id}}"  enctype="multipart/form-data" method="POST">
+									{{ csrf_field() }}
+									<input type="hidden"  name="_method" value="PUT">
+									<input type="textfield" class ="controls" name="name">
+									<input type="submit" value="Submit">
+								</form>
+								@if(!$file->public_share)
+								<form action="/file/{{$file->id}}"  method="POST">
+									{{ csrf_field() }}
+									<input type="hidden"  name="_method" value="PUT">
+									<input type="hidden"  name="public_share" value="1">
+									<input type="submit" value="Publico">
+								</form>
+								@else
+								<form action="/file/{{$file->id}}"  method="POST">
+									{{ csrf_field() }}
+									<input type="hidden"  name="_method" value="PUT">
+									<input type="hidden"  name="public_share" value="0">
+									<input type="submit" value="Privado">
+								</form>
+								@endif
 							</td>
 							</tr>
 						@endforeach	
 					</tbody>
 				</table>
+@endif		
 			</div>
 	<!-- Aca se termina el contenido de la pagina -->
 		</div>
 <!-- Contenido Fin-->		
 	</body>
     <script src="js/app.js"></script>
+
 </html>

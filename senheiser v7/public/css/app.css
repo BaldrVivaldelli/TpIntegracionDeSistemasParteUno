@@ -1,5 +1,13 @@
-@import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);* {
+@import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);.control-label .text-info {
+  display: inline-block;
+}
+
+* {
   font-family: Verdana, Geneva, sans-serif;
+}
+
+.userOption {
+  color: white;
 }
 
 h3 {

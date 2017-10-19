@@ -32,16 +32,21 @@ class FileController extends Controller
     public function create(Request $req)
     {
 		$id = Auth::user()->id;
-		$file = new File();
-		$file->name = $req->myFile->getClientOriginalName();
+        $file = new File();
+        
+        $withoutExt = preg_replace('/\\.[^.\\s]{3,4}$/', '', $req->myFile->getClientOriginalName());
+		$file->name = $withoutExt; 
 		$file->size = $req->myFile->getClientSize();
 		$file->mime_type = $req->myFile->getClientMimeType();
         $file->path = $req->file('myFile')->store('myCloud-'.$id);
-		$file->user()->associate(Auth::user());
+        $file->user()->associate(Auth::user());
+        
 		$file->save();
 		
         return app('App\Http\Controllers\HomeController')->index();
     }
+
+
 
     /**
      * Store a newly created resource in storage.
@@ -63,12 +68,24 @@ class FileController extends Controller
     public function show($id)
     {
         //esta funcion lo que hace es buscar el id del archivo para despues en base a donde esta hubicado en el storage bajarla
-        $path = File::findOrFail($id)->path;  
+
+        
+        $file = File::findOrFail($id);
+        $fileStatus = $file->public_share;
+        $filePath = $file->path;
+        
+
+        if($fileStatus == "0" && $file->user_id !== Auth::user()->id)
+        {
+            return redirect('/home'); 
+        }else{    
+            $mimetype = Storage::mimeType($filePath);
+            return response(Storage::get($filePath), 200)->header('Content-Type', $mimetype);
+        }
+        
         //$type = File::findOrFail($id)->mime_type;  
      //   Response::download($path, $type);
         //return response()->download(storage_path("{$path}"));
-        $mimetype = Storage::mimeType($path);
-        return response(Storage::get($path), 200)->header('Content-Type', $mimetype);
     }
 
     /**
@@ -77,10 +94,21 @@ class FileController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id,Request $req)
     {
-        //
-    }
+        $file = File::findOrFail($id);
+        if($file->user_id !== Auth::user()->id){
+            // ERROR
+        }
+    
+        foreach($req->only(['name', 'public_share']) as $k => $v){
+            $file->$k = $v;
+        }
+
+        $file->save();
+        
+        return redirect('/home');
+        }
 
     /**
      * Update the specified resource in storage.
@@ -108,4 +136,5 @@ class FileController extends Controller
 		File::findOrFail($id)->delete();    
 		return redirect('/home');
     }
+
 }

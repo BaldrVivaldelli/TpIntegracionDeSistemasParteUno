@@ -1,0 +1,50 @@
+Cosas para hacer
+
+Un servidor de laravel que tenga lo siguiente
+
+
+Un servidor node que lo que hace es tener un servicio para que todos le peguen
+y de ahi al laravel
+
+
+
+informacion del package .json
+
+script
+"build" compila la aplicacion 
+"dev"  compila la aplicacion para que el el dessarrollador pueda ejecutarlo
+"server" levanta el express
+"start" arma el baile (levanta ambos en paralelo, haciendo todo el kilombo)
+
+
+dependencias
+
+que es lo que usa todo lo que hay aca
+
+configuracion de bable
+
+.babelrc
+
+
+configuracino de webpack
+
+webpack.config.js
+
+aca le decimos segun orden de arriva para abajo
+
+importamos las librerias
+
+sacamos los directorios y lo guardamos en las variables
+build_dir
+app_dir
+
+en la linea config
+
+hace que la entrada empieza a leer desde "entry"
+
+y vomita / deja todo en build_dir
+
+despues los modulos prueba que esten bien hechos y deja todo en app_dir
+
+
+y exporta la configuracion

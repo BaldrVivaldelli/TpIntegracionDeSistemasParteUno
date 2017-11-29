@@ -1,0 +1,38 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'C:\\Program Files\\nodejs\\node.exe',
+1 verbose cli   'C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js',
+1 verbose cli   'run',
+1 verbose cli   'dev' ]
+2 info using npm@3.10.10
+3 info using node@v6.11.2
+4 warn invalid config https-proxy=""
+5 warn invalid config Must be a full url with 'http://'
+6 verbose run-script [ 'predev', 'dev', 'postdev' ]
+7 info lifecycle react-mongo@1.0.0~predev: react-mongo@1.0.0
+8 silly lifecycle react-mongo@1.0.0~predev: no script for predev, continuing
+9 info lifecycle react-mongo@1.0.0~dev: react-mongo@1.0.0
+10 verbose lifecycle react-mongo@1.0.0~dev: unsafe-perm in lifecycle true
+11 verbose lifecycle react-mongo@1.0.0~dev: PATH: C:\Program Files\nodejs\node_modules\npm\bin\node-gyp-bin;C:\Users\Augusto Vivaldelli\Desktop\Integracion\ReactBase-master v6\node_modules\.bin;C:\Program Files\nodejs\node_modules\npm\bin\node-gyp-bin;C:\Users\Augusto Vivaldelli\Desktop\Integracion\ReactBase-master v6\node_modules\.bin;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files\nodejs\;C:\Program Files (x86)\Yarn\bin;C:\xampp\php;C:\ProgramData\ComposerSetup\bin;C:\Augusto\Java\jdk1.8.0_111\bin;C:\Users\Augusto Vivaldelli\AppData\Local\Microsoft\WindowsApps;C:\Program Files\Microsoft VS Code\bin;C:\Users\Augusto Vivaldelli\AppData\Roaming\npm;C:\Users\Augusto Vivaldelli\AppData\Local\Yarn\bin;C:\Users\Augusto Vivaldelli\AppData\Roaming\Composer\vendor\bin;C:\Program Files\MySQL\MySQL Workbench 6.3 CE;%JAVA_PATH%;
+12 verbose lifecycle react-mongo@1.0.0~dev: CWD: C:\Users\Augusto Vivaldelli\Desktop\Integracion\ReactBase-master v6
+13 silly lifecycle react-mongo@1.0.0~dev: Args: [ '/d /s /c', 'webpack -d --watch' ]
+14 verbose stack Error: kill ENOSYS
+14 verbose stack     at exports._errnoException (util.js:1020:11)
+14 verbose stack     at process.kill (internal/process.js:190:13)
+14 verbose stack     at process.listener (C:\Program Files\nodejs\node_modules\npm\node_modules\npmlog\node_modules\gauge\node_modules\signal-exit\index.js:86:15)
+14 verbose stack     at emitNone (events.js:91:20)
+14 verbose stack     at process.emit (events.js:185:7)
+14 verbose stack     at processEmit (C:\Program Files\nodejs\node_modules\npm\node_modules\npmlog\node_modules\gauge\node_modules\signal-exit\index.js:146:32)
+14 verbose stack     at processEmit (C:\Program Files\nodejs\node_modules\npm\node_modules\npm-registry-client\node_modules\npmlog\node_modules\gauge\node_modules\signal-exit\index.js:146:32)
+14 verbose stack     at Signal.wrap.onsignal (internal/process.js:217:44)
+15 verbose cwd C:\Users\Augusto Vivaldelli\Desktop\Integracion\ReactBase-master v6
+16 error Windows_NT 10.0.15063
+17 error argv "C:\\Program Files\\nodejs\\node.exe" "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js" "run" "dev"
+18 error node v6.11.2
+19 error npm  v3.10.10
+20 error code ENOSYS
+21 error errno ENOSYS
+22 error syscall kill
+23 error kill ENOSYS
+24 error If you need help, you may report this error at:
+24 error     <https://github.com/npm/npm/issues>
+25 verbose exit [ 1, true ]

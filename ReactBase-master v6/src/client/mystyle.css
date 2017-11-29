@@ -1,0 +1,58 @@
+*{
+    color: black;
+	font-family: Verdana, Geneva, sans-serif;
+}
+h2{
+	padding:2%;
+	color:white;
+	}
+#cont{
+	padding: 9%;
+	
+}
+#btnDiv{
+	display:inline-block;
+}
+#searchTextboxId{
+	display:inline-block;
+}
+.btn {
+  display: inline-block;
+  padding: 2px 14px;
+  font-size: 18px;
+  height: 32px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: #5a92ad;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 9px #999;
+}
+
+.btn:hover {background-color: #5388a3}
+
+.btn:active {
+  background-color: #436d82;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+header {
+  -webkit-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.26);
+          box-shadow: 0 2px 5px rgba(0, 0, 0, 0.26);
+  color: #fff;
+  height: 120px;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 10;
+  background-color: #455a64;
+  display: block;
+}
+#searchTextbox{
+	    border-radius: 15px;
+		height:32px;
+display:inline-block;		
+}
